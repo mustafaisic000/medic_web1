@@ -1,0 +1,38 @@
+<div class="home-container">
+  <nav class="navbar">
+    <h1 class="navbar-title">MedicalLab</h1>
+    <button class="logout-button" (click)="logout()">Logout</button>
+  </nav>
+  <div class="content">
+    <div class="header">
+      <p>Total Users: {{ filteredUsers.length }}</p>
+      <select (change)="filterUsersByRole($event)">
+        <option value="all">All</option>
+        <option value="1">Admin</option>
+        <option value="2">Employee</option>
+      </select>
+      <input type="text" [(ngModel)]="searchQuery" (input)="searchUsers()" placeholder="Search by ID">
+      <button class="add-user-button" (click)="registerUser()">Register User</button>
+    </div>
+    <div class="table-container">
+      <table>
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Username</th>
+          <th>Last Login Date</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of filteredUsers" (click)="showUserDetails(user)">
+          <td>{{ user.id }}</td>
+          <td>{{ user.name }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.lastLoginDate  }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
